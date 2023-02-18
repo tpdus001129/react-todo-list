@@ -1,9 +1,23 @@
 /* eslint-disable */
 
-import { useRef } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { todosAtom, lastTodoIdAtom } from "./atoms";
 import { dateToStr } from "./util";
+
+export function useTodoOptionDrawerStatus() {
+  const [todoId, setTodoId] = useState(null);
+  const opened = useMemo(() => todoId !== null, [todoId]);
+  const close = () => setTodoId(null);
+  const open = (id) => setTodoId(id);
+
+  return {
+    todoId,
+    opened,
+    close,
+    open
+  };
+}
 
 export function useTodosStatus() {
   const [todos, setTodos] = useRecoilState(todosAtom);
