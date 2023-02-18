@@ -10,7 +10,7 @@ import {
 
 import MainPage from "./pages/MainPage";
 import WritePage from "./pages/WritePage";
-import NoticeSnackbar from "./components/NoticeSnackbar";
+import { NoticeSnackbar } from "./components/NoticeSnackbar";
 
 function App() {
   const location = useLocation();
@@ -20,7 +20,7 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <div className="flex-1"></div>
-          <span className="font-bold select-none">My Note</span>
+          <span className="font-bold select-none">앱 이름</span>
           <div className="flex-1 flex justify-end">
             {location.pathname != "/write" && (
               <NavLink to="/write" className="select-none">
