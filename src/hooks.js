@@ -1,7 +1,9 @@
 /* eslint-disable */
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useRecoilState } from "recoil";
+import produce from "immer";
+
 import { todosAtom, lastTodoIdAtom } from "./atoms";
 import { dateToStr } from "./util";
 
@@ -15,7 +17,7 @@ export function useTodoOptionDrawerStatus() {
     todoId,
     opened,
     close,
-    open
+    open,
   };
 }
 
@@ -85,6 +87,20 @@ export function useTodosStatus() {
     return todos[index];
   };
 
+  const toggleTodoCompletedById = (id) => { //할 일 체크버튼 클릭
+    const index = findTodoIndexById(id);
+
+    if (index == -1) {
+      return;
+    }
+
+    setTodos(
+      produce(todos, (draft) => {
+        draft[index].completed = !draft[index].completed;
+      })
+    );
+  };
+
   return {
     todos,
     addTodo,
@@ -93,5 +109,6 @@ export function useTodosStatus() {
     removeTodo,
     removeTodoById,
     findTodoById,
+    toggleTodoCompletedById,
   };
 }
