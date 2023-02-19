@@ -1,6 +1,8 @@
+/* eslint-disable */
 import { useNoticeSnackbarStatus } from "./NoticeSnackbar";
 import { useTodosStatus } from "../hooks";
 import { SwipeableDrawer, List, ListItem, Divider } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export default function TodoOptionDrawer({ status }) {
   const noticeSnackbarStatus = useNoticeSnackbarStatus();
@@ -53,7 +55,8 @@ export default function TodoOptionDrawer({ status }) {
           <ListItem
             className="!pt-6 !p-5 !items-baseline"
             button
-            onClick={() => {}}
+            component={NavLink}
+            to={`/edit/${todo?.id}`}
           >
             <i className="fa-solid fa-pen-to-square"></i>
             &nbsp;
