@@ -20,7 +20,7 @@ function App() {
     <>
       <AppBar position="static">
         <Toolbar>
-          <span className="font-bold select-none">HAPPY NOTE</span>
+          <span className="font-bold select-none">My Note</span>
           <div className="flex-1 flex justify-end">
             {location.pathname == "/main" && (
               <NavLink to="/write" className="select-none">

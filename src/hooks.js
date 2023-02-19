@@ -43,21 +43,23 @@ export function useTodosStatus() {
     return id;
   };
 
-  const modifyTodo = (index, newContent) => {
-    const newTodos = todos.map((todo, _index) =>
-      _index != index ? todo : { ...todo, content: newContent }
-    );
+  const modifyTodo = (index, regDate, content) => {
+    const newTodos = produce(todos, (draft) => {
+      draft[index].regDate = dateToStr(new Date(regDate));
+      draft[index].content = content;
+    });
+
     setTodos(newTodos);
   };
 
-  const modifyTodoById = (id, newContent) => {
+  const modifyTodoById = (id, regDate, newContent) => {
     const index = findTodoIndexById(id);
 
     if (index == -1) {
       return;
     }
 
-    modifyTodo(index, newContent);
+    modifyTodo(index, regDate, newContent);
   };
 
   const removeTodo = (index) => {
@@ -87,7 +89,7 @@ export function useTodosStatus() {
     return todos[index];
   };
 
-  const toggleTodoCompletedById = (id) => { //할 일 체크버튼 클릭
+  const toggleTodoCompletedById = (id) => {
     const index = findTodoIndexById(id);
 
     if (index == -1) {
