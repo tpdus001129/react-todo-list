@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import { useState, useRef, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import produce from "immer";
@@ -28,14 +27,16 @@ export function useTodosStatus() {
 
   lastTodoIdRef.current = lastTodoId;
 
-  const addTodo = (regDate, newContent) => {
+  const addTodo = (performDate, newContent) => {
     const id = ++lastTodoIdRef.current;
     setLastTodoId(id);
 
     const newTodo = {
       id,
+      regDate: dateToStr(new Date()),
+      performDate: dateToStr(new Date(performDate)),
       content: newContent,
-      regDate: dateToStr(new Date(regDate)),
+      completed: false,
     };
 
     setTodos((todos) => [newTodo, ...todos]);
@@ -43,23 +44,23 @@ export function useTodosStatus() {
     return id;
   };
 
-  const modifyTodo = (index, regDate, content) => {
+  const modifyTodo = (index, performDate, content) => {
     const newTodos = produce(todos, (draft) => {
-      draft[index].regDate = dateToStr(new Date(regDate));
+      draft[index].performDate = dateToStr(new Date(performDate));
       draft[index].content = content;
     });
 
     setTodos(newTodos);
   };
 
-  const modifyTodoById = (id, regDate, newContent) => {
+  const modifyTodoById = (id, performDate, newContent) => {
     const index = findTodoIndexById(id);
 
     if (index == -1) {
       return;
     }
 
-    modifyTodo(index, regDate, newContent);
+    modifyTodo(index, performDate, newContent);
   };
 
   const removeTodo = (index) => {
