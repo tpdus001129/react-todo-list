@@ -17,7 +17,7 @@ export default function TodoListItem({
             className="!pt-1"
           />
           <Chip
-            label={todo.performDate.substr(0, 16)}
+            label={todo.performDate.substr(0, 16)} //시간 chip 길이 조정
             color="primary"
             variant="outlined"
             className="!pt-1"

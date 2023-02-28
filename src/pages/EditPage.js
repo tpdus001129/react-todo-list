@@ -65,11 +65,11 @@ export default function EditPage() {
           defaultValue={todo.content}
         />
         <Button type="submit" variant="contained">
+          <span>&nbsp;</span>
+          <span>{todo.id}번 할 일 수정&nbsp;</span>
           <span>
             <i className="fa-solid fa-pen"></i>
           </span>
-          <span>&nbsp;</span>
-          <span>할 일 수정</span>
         </Button>
       </form>
     </>
