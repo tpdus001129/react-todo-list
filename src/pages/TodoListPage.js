@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Tab, Tabs } from "@mui/material";
 import { useRecoilState } from "recoil";
 
@@ -31,6 +32,30 @@ export default function TodoList() {
   };
 
   const filteredTodos = getFliteredTodos();
+
+  const getSortedTodos = () => {
+    if (sortIndex == 0) {
+      return [...filteredTodos].sort((a, b) => {
+        if (a.performDate == b.performDate) return 0;
+
+        return a.performDate > b.performDate ? 1 : -1;
+      });
+    } else if (sortIndex == 1) {
+      return [...filteredTodos].sort((a, b) => {
+        if (a.performDate == b.performDate) return 0;
+
+        return a.performDate < b.performDate ? 1 : -1;
+      });
+    } else if (sortIndex == 2) {
+      return [...filteredTodos].sort((a, b) => {
+        return a.id > b.id ? 1 : -1;
+      });
+    }
+
+    return filteredTodos;
+  };
+
+  const sortedTodos = getSortedTodos();
 
   return (
     <>
@@ -125,7 +150,7 @@ export default function TodoList() {
 
       <div className="mt-4 px-4">
         <ul>
-          {filteredTodos.map((todo, index) => (
+          {sortedTodos.map((todo, index) => (
             <TodoListItem
               key={todo.id}
               todo={todo}
