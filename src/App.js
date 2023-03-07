@@ -26,7 +26,7 @@ function App() {
             to="/main"
             className="font-bold select-none self-stretch flex items-center mr-auto"
           >
-            HAPPY NOTE
+            MY NOTE
           </NavLink>
           {location.pathname == "/main" && (
             <NavLink
