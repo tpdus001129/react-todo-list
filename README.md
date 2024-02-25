@@ -19,8 +19,7 @@
 **[ 메인 페이지와 할 일 추가 페이지 ]**  
 <br />
 
-![bandicam 2024-02-24 23-11-42-775](https://github.com/tpdus001129/react-todo-list/assets/113432040/40cd03fa-ae2e-4b5e-bcd3-fe7fe2bf7946)
-![bandicam 2024-02-24 23-11-59-168](https://github.com/tpdus001129/react-todo-list/assets/113432040/06882ecf-3091-4bea-ad4e-a766c64bdc5b)
+![1번](https://github.com/tpdus001129/react-todo-list/assets/113432040/1ba73290-7a00-48d7-aba6-333dd615154e)
 
 <br /><hr />
 
@@ -32,8 +31,7 @@
 **작성순** - 작성 시간 순서대로 정렬된다.  
 <br />
 
-![bandicam 2024-02-24 23-18-49-088](https://github.com/tpdus001129/react-todo-list/assets/113432040/4c92baca-a7c1-4e72-94c5-b1e7fd907342)
-![bandicam 2024-02-24 23-19-03-889](https://github.com/tpdus001129/react-todo-list/assets/113432040/707453e6-4bde-4fed-9187-0680eb9ce95a)
+![2번](https://github.com/tpdus001129/react-todo-list/assets/113432040/5c8daacc-71af-425b-a81a-5e9b9ca6f203)
 
 <br /><hr />
 
@@ -44,8 +42,7 @@
 **미완료** - 할 일을 완료하지 않은 리스트를 필터링 한다.  
 <br />
 
-![bandicam 2024-02-24 23-19-46-574](https://github.com/tpdus001129/react-todo-list/assets/113432040/77cd35ad-dc2a-44aa-ba3e-bc5eda4d1fdb)
-![bandicam 2024-02-24 23-19-52-750](https://github.com/tpdus001129/react-todo-list/assets/113432040/cafa888f-f7f1-4b4f-a238-c578cdfd1ec6)
+![3번](https://github.com/tpdus001129/react-todo-list/assets/113432040/ed194c8d-aca2-46d8-b1c8-e852ddbeeaed)
 
 <br /><hr />
 
@@ -56,8 +53,7 @@
 삭제 & 수정 시 알림창 생성
 <br />
 
-![bandicam 2024-02-24 23-20-07-405](https://github.com/tpdus001129/react-todo-list/assets/113432040/be1f684b-1208-4cd9-a776-42d16135de71)
-![bandicam 2024-02-24 23-20-30-190](https://github.com/tpdus001129/react-todo-list/assets/113432040/acb93037-b74f-4818-8114-5ab9c6295cc6)
+![4번](https://github.com/tpdus001129/react-todo-list/assets/113432040/4974da04-53d5-426e-a36c-0c43df4ef84b)
 
 <br /><hr />
 
