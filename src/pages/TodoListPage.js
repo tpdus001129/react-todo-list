@@ -5,10 +5,7 @@ import { useRecoilState } from "recoil";
 import { useTodosStatus, useTodoOptionDrawerStatus } from "../hooks";
 import TodoOptionDrawer from "../components/TodoOptionDrawer";
 import TodoListItem from "../components/TodoListItem";
-import {
-  TodoList__filterCompletedIndexAtom,
-  TodoList__sortIndexAtom,
-} from "../atoms";
+import { TodoList__filterCompletedIndexAtom, TodoList__sortIndexAtom } from "../atoms";
 
 export default function TodoList() {
   const todosStatus = useTodosStatus();
@@ -107,7 +104,7 @@ export default function TodoList() {
           label={
             <span className="flex items-baseline">
               <i className="fa-regular fa-clock mr-2"></i>
-              <span className="mr-2 whitespace-nowrap">급해요</span>
+              <span className="mr-2 whitespace-nowrap">급한순</span>
               <i className="fa-solid fa-sort-up relative top-[3px]"></i>
             </span>
           }
@@ -118,7 +115,7 @@ export default function TodoList() {
           label={
             <span className="flex items-baseline">
               <i className="fa-regular fa-clock mr-2"></i>
-              <span className="mr-2 whitespace-nowrap">널럴해요</span>
+              <span className="mr-2 whitespace-nowrap">널널한순</span>
               <i className="fa-solid fa-sort-down relative top-[-3px]"></i>
             </span>
           }

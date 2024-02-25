@@ -63,9 +63,24 @@ export function useTodosStatus() {
     modifyTodo(index, performDate, newContent);
   };
 
+  // 삭제
   const removeTodo = (index) => {
-    const newTodos = todos.filter((_, _index) => _index != index);
-    setTodos(newTodos);
+    const removedTodo = todos[index];
+    const newTodos = todos.filter((_, _index) => _index !== index);
+
+    if (removedTodo.id !== lastTodoId) {
+      const updatedTodos = newTodos.map((todo) => {
+        if (todo.id > removedTodo.id) {
+          return { ...todo, id: todo.id - 1 };
+        }
+        return todo;
+      });
+      setTodos(updatedTodos);
+    } else {
+      setTodos(newTodos);
+    }
+
+    setLastTodoId(lastTodoId - 1);
   };
 
   const removeTodoById = (id) => {
