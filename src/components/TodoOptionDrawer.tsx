@@ -1,30 +1,27 @@
-/* eslint-disable */
 import { useNoticeSnackbarStatus } from "./NoticeSnackbar";
-import { useTodosStatus } from "../hooks";
+import { useTodosStatus } from "../common/hooks";
 import { SwipeableDrawer, List, ListItem, Divider } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { Status } from "../common/type";
 
-export default function TodoOptionDrawer({ status }) {
+export default function TodoOptionDrawer({ status }: { status: Status }) {
   const noticeSnackbarStatus = useNoticeSnackbarStatus();
   const todosStatus = useTodosStatus();
 
   const removeTodo = () => {
-    if (
-      window.confirm(`${status.todoId}번 할일을 삭제하시겠습니까?`) == false
-    ) {
-      status.close();
-      return;
-    }
+    if (typeof status.todoId === "number") {
+      if (window.confirm(`${status.todoId}번 할일을 삭제하시겠습니까?`) === false) {
+        status.close();
+        return;
+      }
 
-    todosStatus.removeTodoById(status.todoId);
-    status.close();
-    noticeSnackbarStatus.open(
-      `${status.todoId}번 할일이 삭제되었습니다.`,
-      "info"
-    );
+      todosStatus.removeTodoById(status.todoId);
+      status.close();
+      noticeSnackbarStatus.open(`${status.todoId}번 할일이 삭제되었습니다.`, "info");
+    }
   };
 
-  const todo = todosStatus.findTodoById(status.todoId);
+  const todo = status.todoId !== null ? todosStatus.findTodoById(status.todoId) : null;
 
   return (
     <>
@@ -36,18 +33,12 @@ export default function TodoOptionDrawer({ status }) {
       >
         <List className="!py-0">
           <ListItem className="!pt-6 !p-5">
-            <span className="text-[color:var(--mui-color-primary-main)]">
-              {todo?.id}번
-            </span>
+            <span className="text-primary">{todo?.id}번</span>
             <span>&nbsp;</span>
             <span>할일에 대해서</span>
           </ListItem>
           <Divider />
-          <ListItem
-            className="!pt-6 !p-5 !items-baseline"
-            button
-            onClick={removeTodo}
-          >
+          <ListItem className="!pt-6 !p-5 !items-baseline" button onClick={removeTodo}>
             <i className="fa-solid fa-trash-can"></i>
             &nbsp;
             <span>삭제</span>

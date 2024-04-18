@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { recoilPersist } from "recoil-persist";
 import { atom } from "recoil";
 

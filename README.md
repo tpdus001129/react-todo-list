@@ -8,10 +8,38 @@
 
 <div align="left">  
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=Recoil&logoColor=white"/>
   <img src="https://img.shields.io/badge/MUI-007FFF?style=flat-square&logo=MUI&logoColor=white"/>
   <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat-square&logo=Tailwind CSS&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=Recoil&logoColor=white"/>
 </div>
+<br/>
+
+## 프로젝트 구조
+
+```
+📦src
+ ┣ 📂common
+ ┃ ┣ 📜atoms.ts
+ ┃ ┣ 📜hooks.ts
+ ┃ ┣ 📜type.ts
+ ┃ ┗ 📜util.ts
+ ┣ 📂components
+ ┃ ┣ 📜NoticeSnackbar.tsx
+ ┃ ┣ 📜TodoListItem.tsx
+ ┃ ┣ 📜TodoOptionDrawer.tsx
+ ┃ ┗ 📜TodosEmpty.tsx
+ ┣ 📂pages
+ ┃ ┣ 📜EditPage.tsx
+ ┃ ┣ 📜MainPage.tsx
+ ┃ ┣ 📜TodoListPage.tsx
+ ┃ ┗ 📜WritePage.tsx
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┣ 📜index.tsx
+ ┗ 📜Root.tsx
+```
+
 <br/>
 
 ## 주요기능

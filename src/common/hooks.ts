@@ -1,16 +1,15 @@
-/* eslint-disable */
 import { useState, useRef, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import produce from "immer";
-
 import { todosAtom, lastTodoIdAtom } from "./atoms";
 import { dateToStr } from "./util";
+import { Todo } from "./type";
 
 export function useTodoOptionDrawerStatus() {
-  const [todoId, setTodoId] = useState(null);
+  const [todoId, setTodoId] = useState<number | null>(null);
   const opened = useMemo(() => todoId !== null, [todoId]);
   const close = () => setTodoId(null);
-  const open = (id) => setTodoId(id);
+  const open = (id: number) => setTodoId(id);
 
   return {
     todoId,
@@ -27,11 +26,11 @@ export function useTodosStatus() {
 
   lastTodoIdRef.current = lastTodoId;
 
-  const addTodo = (performDate, newContent) => {
+  const addTodo = (performDate: string, newContent: string) => {
     const id = ++lastTodoIdRef.current;
     setLastTodoId(id);
 
-    const newTodo = {
+    const newTodo: Todo = {
       id,
       regDate: dateToStr(new Date()),
       performDate: dateToStr(new Date(performDate)),
@@ -39,13 +38,13 @@ export function useTodosStatus() {
       completed: false,
     };
 
-    setTodos((todos) => [newTodo, ...todos]);
+    setTodos((todos: Todo[]) => [newTodo, ...todos]);
 
     return id;
   };
 
-  const modifyTodo = (index, performDate, content) => {
-    const newTodos = produce(todos, (draft) => {
+  const modifyTodo = (index: number, performDate: string, content: string) => {
+    const newTodos = produce(todos, (draft: Todo[]) => {
       draft[index].performDate = dateToStr(new Date(performDate));
       draft[index].content = content;
     });
@@ -53,10 +52,10 @@ export function useTodosStatus() {
     setTodos(newTodos);
   };
 
-  const modifyTodoById = (id, performDate, newContent) => {
+  const modifyTodoById = (id: number, performDate: string, newContent: string) => {
     const index = findTodoIndexById(id);
 
-    if (index == -1) {
+    if (index === -1) {
       return;
     }
 
@@ -64,12 +63,12 @@ export function useTodosStatus() {
   };
 
   // 삭제
-  const removeTodo = (index) => {
+  const removeTodo = (index: number) => {
     const removedTodo = todos[index];
-    const newTodos = todos.filter((_, _index) => _index !== index);
+    const newTodos = todos.filter((_: Todo, _index: number) => _index !== index);
 
     if (removedTodo.id !== lastTodoId) {
-      const updatedTodos = newTodos.map((todo) => {
+      const updatedTodos = newTodos.map((todo: Todo) => {
         if (todo.id > removedTodo.id) {
           return { ...todo, id: todo.id - 1 };
         }
@@ -83,37 +82,37 @@ export function useTodosStatus() {
     setLastTodoId(lastTodoId - 1);
   };
 
-  const removeTodoById = (id) => {
+  const removeTodoById = (id: number) => {
     const index = findTodoIndexById(id);
 
-    if (index != -1) {
+    if (index !== -1) {
       removeTodo(index);
     }
   };
 
-  const findTodoIndexById = (id) => {
-    return todos.findIndex((todo) => todo.id == id);
+  const findTodoIndexById = (id: number) => {
+    return todos.findIndex((todo: Todo) => todo.id === id);
   };
 
-  const findTodoById = (id) => {
+  const findTodoById = (id: number) => {
     const index = findTodoIndexById(id);
 
-    if (index == -1) {
+    if (index === -1) {
       return null;
     }
 
     return todos[index];
   };
 
-  const toggleTodoCompletedById = (id) => {
+  const toggleTodoCompletedById = (id: number) => {
     const index = findTodoIndexById(id);
 
-    if (index == -1) {
+    if (index === -1) {
       return;
     }
 
     setTodos(
-      produce(todos, (draft) => {
+      produce(todos, (draft: Todo[]) => {
         draft[index].completed = !draft[index].completed;
       })
     );

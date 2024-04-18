@@ -1,27 +1,26 @@
-/* eslint-disable */
 import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useNoticeSnackbarStatus } from "../components/NoticeSnackbar";
-import { useTodosStatus } from "../hooks";
+import { useTodosStatus } from "../common/hooks";
 
 export default function WritePage() {
   const noticeSnackbarStatus = useNoticeSnackbarStatus();
   const todosStatus = useTodosStatus();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.target;
+    const form = e.currentTarget;
 
-    if (form.performDate.value.length == 0) {
+    if (form.performDate.value.length === 0) {
       alert("날짜를 입력해주세요.");
       form.performDate.focus();
 
       return;
     }
 
-    if (form.content.value.length == 0) {
+    if (form.content.value.length === 0) {
       alert("내용을 입력해주세요.");
       form.content.focus();
 

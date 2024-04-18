@@ -1,5 +1,5 @@
 import TodosEmpty from "../components/TodosEmpty";
-import { useTodosStatus } from "../hooks";
+import { useTodosStatus } from "../common/hooks";
 import TodoListPage from "./TodoListPage";
 
 export default function MainPage() {

@@ -1,28 +1,28 @@
-/* eslint-disable */
 import { Tab, Tabs } from "@mui/material";
 import { useRecoilState } from "recoil";
+import { Todo } from "../common/type";
 
-import { useTodosStatus, useTodoOptionDrawerStatus } from "../hooks";
+import { useTodosStatus, useTodoOptionDrawerStatus } from "../common/hooks";
 import TodoOptionDrawer from "../components/TodoOptionDrawer";
 import TodoListItem from "../components/TodoListItem";
-import { TodoList__filterCompletedIndexAtom, TodoList__sortIndexAtom } from "../atoms";
+import { TodoList__filterCompletedIndexAtom, TodoList__sortIndexAtom } from "../common/atoms";
 
 export default function TodoList() {
   const todosStatus = useTodosStatus();
   const todoOptionDrawerStatus = useTodoOptionDrawerStatus();
-  const onCompletedBtnClicked = (id) => todosStatus.toggleTodoCompletedById(id);
+  const onCompletedBtnClicked = (id: number) => todosStatus.toggleTodoCompletedById(id);
   const [filterCompletedIndex, setFilterCompletedIndex] = useRecoilState(
     TodoList__filterCompletedIndexAtom
   );
   const [sortIndex, setSortIndex] = useRecoilState(TodoList__sortIndexAtom);
 
   const getFliteredTodos = () => {
-    if (filterCompletedIndex == 1) {
-      return todosStatus.todos.filter((todo) => !todo.completed);
+    if (filterCompletedIndex === 1) {
+      return todosStatus.todos.filter((todo: Todo) => !todo.completed);
     }
 
-    if (filterCompletedIndex == 2) {
-      return todosStatus.todos.filter((todo) => todo.completed);
+    if (filterCompletedIndex === 2) {
+      return todosStatus.todos.filter((todo: Todo) => todo.completed);
     }
 
     return todosStatus.todos;
@@ -31,19 +31,19 @@ export default function TodoList() {
   const filteredTodos = getFliteredTodos();
 
   const getSortedTodos = () => {
-    if (sortIndex == 0) {
+    if (sortIndex === 0) {
       return [...filteredTodos].sort((a, b) => {
-        if (a.performDate == b.performDate) return 0;
+        if (a.performDate === b.performDate) return 0;
 
         return a.performDate > b.performDate ? 1 : -1;
       });
-    } else if (sortIndex == 1) {
+    } else if (sortIndex === 1) {
       return [...filteredTodos].sort((a, b) => {
-        if (a.performDate == b.performDate) return 0;
+        if (a.performDate === b.performDate) return 0;
 
         return a.performDate < b.performDate ? 1 : -1;
       });
-    } else if (sortIndex == 2) {
+    } else if (sortIndex === 2) {
       return [...filteredTodos].sort((a, b) => {
         return a.id > b.id ? 1 : -1;
       });
@@ -147,7 +147,7 @@ export default function TodoList() {
 
       <div className="px-5 pb-6 sm:px-8 sm:pb-10">
         <ul>
-          {sortedTodos.map((todo, index) => (
+          {sortedTodos.map((todo: Todo, index: number) => (
             <TodoListItem
               key={todo.id}
               todo={todo}

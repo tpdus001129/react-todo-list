@@ -1,31 +1,29 @@
-/* eslint-disable */
 import { TextField, Button } from "@mui/material";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useNoticeSnackbarStatus } from "../components/NoticeSnackbar";
-import { useTodosStatus } from "../hooks";
+import { useTodosStatus } from "../common/hooks";
 
 export default function EditPage() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id }: { id?: string } = useParams();
 
   const noticeSnackbarStatus = useNoticeSnackbarStatus();
   const todosStatus = useTodosStatus();
+  const todo = id !== undefined ? todosStatus.findTodoById(parseInt(id, 10)) : undefined;
 
-  const todo = todosStatus.findTodoById(id);
-
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.target;
+    const form = e.currentTarget;
 
-    if (form.performDate.value.length == 0) {
+    if (form.performDate.value.length === 0) {
       alert("날짜를 입력해주세요.");
       form.performDate.focus();
 
       return;
     }
 
-    if (form.content.value.length == 0) {
+    if (form.content.value.length === 0) {
       alert("내용을 입력해주세요.");
       form.content.focus();
 
@@ -43,7 +41,7 @@ export default function EditPage() {
     navigate(-1);
   };
 
-  const performDateForInput = todo.performDate.substr(0, 16).replace(" ", "T");
+  const performDateForInput = todo.performDate.slice(0, 16).replace(" ", "T");
 
   return (
     <>
